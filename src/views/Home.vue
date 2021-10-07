@@ -2,81 +2,48 @@
   <v-container class="home">
     <h1>HOME</h1>
     <v-container id="timeline-container">
-      <v-timeline align-top dense id="timeline">
-        <v-timeline-item
-          id="item-1"
-          icon="fas fa-shopping-bag"
-          color="error"
-          icon-color="white"
-          fill-dot
-        >
-          <v-card color="error">
-            <v-card-title class="transaction-card-title">
-              <h3>Shopping</h3>
-            </v-card-title>
-            <v-card-text class="transaction-card-info white">
-              <v-container class="dates-container">
-                <h3>07/10/21</h3>
-                <h3>12:59</h3>
-              </v-container>
-              <h2>R$ 45,00</h2>
-            </v-card-text>
-          </v-card>
-        </v-timeline-item>
-        <v-timeline-item
-          id="item-1"
-          icon="fas fa-utensils"
-          color="error"
-          icon-color="white"
-          fill-dot
-          >Food</v-timeline-item
-        >
-        <v-timeline-item
-          id="item-1"
-          icon="fas fa-dollar-sign"
-          color="success"
-          icon-color="white"
-          fill-dot
-          >Salary</v-timeline-item
-        >
-      </v-timeline>
+      <TransactionsTimeline :transactions="transactions" />
     </v-container>
   </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { ITransaction } from '@finances-app/types';
+import TransactionsTimeline from '@/components/TransactionsTimeline.vue';
 
 @Component({
-  components: {},
-  data: {
-    transactions: [
-      {
-        name: 'Shopping',
-        icon: 'fas fa-shopping-bag',
-        type: 'outcome',
-        date: '07/10/21',
-        time: '12:59',
-        value: 45.86,
-      },
-      {
-        name: 'Food',
-        icon: 'fas fa-utensils',
-        type: 'outcome',
-        date: '07/10/21',
-        time: '12:58',
-        value: 22.5,
-      },
-      {
-        name: 'Salary',
-        icon: 'fas fa-dollar-sign',
-        type: 'income',
-        date: '07/10/21',
-        time: '11:35',
-        value: 2500,
-      },
-    ],
+  components: {
+    TransactionsTimeline,
+  },
+  data() {
+    return {
+      transactions: [
+        {
+          name: 'Shopping',
+          icon: 'fas fa-shopping-bag',
+          type: 'outcome',
+          date: '07/10/21',
+          time: '12:59',
+          value: 45.86,
+        },
+        {
+          name: 'Food',
+          icon: 'fas fa-utensils',
+          type: 'outcome',
+          date: '07/10/21',
+          time: '12:58',
+          value: 22.5,
+        },
+        {
+          name: 'Salary',
+          icon: 'fas fa-dollar-sign',
+          type: 'income',
+          date: '07/10/21',
+          time: '11:35',
+          value: 2500,
+        },
+      ],
+    };
   },
   methods: {
     expand(index) {
@@ -90,27 +57,5 @@ export default class Home extends Vue {}
 <style scoped>
 #timeline-container {
   width: 60%;
-}
-
-.transaction-card-title {
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.transaction-card-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dates-container {
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
 }
 </style>
