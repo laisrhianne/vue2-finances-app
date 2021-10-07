@@ -9,7 +9,6 @@
           color="error"
           icon-color="white"
           fill-dot
-          @click.native="expandTransaction(0)"
         >
           <v-card color="error">
             <v-card-title class="transaction-card-title">
@@ -47,6 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { ITransaction } from '@finances-app/types';
 
 @Component({
   components: {},
@@ -55,12 +55,31 @@ import { Component, Vue } from 'vue-property-decorator';
       {
         name: 'Shopping',
         icon: 'fas fa-shopping-bag',
-        color: 'error',
+        type: 'outcome',
+        date: '07/10/21',
+        time: '12:59',
+        value: 45.86,
+      },
+      {
+        name: 'Food',
+        icon: 'fas fa-utensils',
+        type: 'outcome',
+        date: '07/10/21',
+        time: '12:58',
+        value: 22.5,
+      },
+      {
+        name: 'Salary',
+        icon: 'fas fa-dollar-sign',
+        type: 'income',
+        date: '07/10/21',
+        time: '11:35',
+        value: 2500,
       },
     ],
   },
   methods: {
-    expandTransaction(index) {
+    expand(index) {
       console.log(index);
     },
   },
