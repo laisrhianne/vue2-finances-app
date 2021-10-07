@@ -1,12 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app id="app">
+    <v-app-bar id="nav" height="40px" max-height="90px">
+      <v-app-bar-title>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/details">Details</router-link> |
+        <router-link to="/register">Register</router-link>
+      </v-app-bar-title>
+    </v-app-bar>
+    <v-main>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+
+@Component({
+  name: "App",
+  data: {},
+})
+export default class Application extends Vue {}
+</script>
 
 <style>
 #app {
@@ -18,7 +35,11 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 #nav a {

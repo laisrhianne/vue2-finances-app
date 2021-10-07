@@ -1,4 +1,6 @@
-# vue2-finances-app
+# Vue 2 Finances App
+
+Finances app developed with Vue 2, Vuetify, Vue-router, Vuex and TypeScript.
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
