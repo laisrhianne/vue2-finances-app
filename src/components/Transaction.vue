@@ -5,8 +5,12 @@
     :color="transaction.type === 'income' ? 'success' : 'error'"
     icon-color="white"
     fill-dot
+    @click.native="expandToggle"
   >
-    <v-card :color="transaction.type === 'income' ? 'success' : 'error'">
+    <v-card
+      v-if="expanded"
+      :color="transaction.type === 'income' ? 'success' : 'error'"
+    >
       <v-card-title class="transaction-card-title">
         <h3>{{ transaction.name }}</h3>
       </v-card-title>
@@ -18,25 +22,31 @@
         <h2>$ {{ transaction.value.toFixed(2) }}</h2>
       </v-card-text>
     </v-card>
+    <h3 class="transaction-title" v-else>{{ transaction.name }}</h3>
   </v-timeline-item>
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { ITransaction } from '@finances-app/types';
 
 @Component({
   name: 'Transaction',
   components: {},
-  props: {
-    transaction: { type: Object as PropType<ITransaction> },
-  },
 })
-export default class Transaction extends Vue {}
+export default class Transaction extends Vue {
+  @Prop()
+  readonly transaction!: ITransaction;
+
+  expanded = false;
+
+  public expandToggle(): void {
+    this.expanded = !this.expanded;
+  }
+}
 </script>
 
-<style>
+<style scoped>
 .transaction-card-title {
   color: #ffffff;
   display: flex;
@@ -57,5 +67,9 @@ export default class Transaction extends Vue {}
   flex-direction: column;
   align-items: center;
   margin: 5px 0 0 0;
+}
+
+.transaction-title {
+  text-align: left;
 }
 </style>

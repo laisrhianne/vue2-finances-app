@@ -1,12 +1,12 @@
 <template>
   <v-app id="app">
-    <v-app-bar id="nav" height="40px" max-height="90px">
+    <!-- <v-app-bar id="nav" height="40px" max-height="90px">
       <v-app-bar-title>
         <router-link to="/">Home</router-link> |
         <router-link to="/details">Details</router-link> |
         <router-link to="/register">Register</router-link>
       </v-app-bar-title>
-    </v-app-bar>
+    </v-app-bar> -->
     <v-main>
       <v-container fluid>
         <router-view />

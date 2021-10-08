@@ -9,8 +9,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import Transaction from './Transaction.vue';
 import { ITransaction } from '@finances-app/types';
 
@@ -19,11 +18,11 @@ import { ITransaction } from '@finances-app/types';
   components: {
     Transaction,
   },
-  props: {
-    transactions: { type: Array as PropType<ITransaction[]> },
-  },
 })
-export default class TransactionsTimeline extends Vue {}
+export default class TransactionsTimeline extends Vue {
+  @Prop()
+  readonly transactions!: ITransaction[];
+}
 </script>
 
 <style></style>
